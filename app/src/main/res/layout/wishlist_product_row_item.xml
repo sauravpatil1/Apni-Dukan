@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/wishlist_row_iitem_bg">
+
+    <ImageView
+        android:id="@+id/wishlistProductImageView"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/category2" />
+
+    <TextView
+        android:id="@+id/wishlistProductNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/open_sans"
+        android:text="Product name"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wishlistProductImageView" />
+
+    <TextView
+        android:id="@+id/WishListProductPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/open_sans"
+        android:text="3343"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wishlistProductNameTextView" />
+
+    <View
+        android:id="@+id/view6"
+        android:layout_width="158dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="#7A7A7A"
+        app:layout_constraintEnd_toEndOf="@+id/wishlistProductImageView"
+        app:layout_constraintStart_toStartOf="@+id/wishlistProductImageView"
+        app:layout_constraintTop_toBottomOf="@+id/WishListProductPrice" />
+
+    <TextView
+        android:id="@+id/whishlistMoveToCartTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/open_sans"
+        android:text="MOVE TO CART"
+        android:textColor="#DD4366"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/wishlistProductImageView"
+        app:layout_constraintStart_toStartOf="@+id/wishlistProductImageView"
+        app:layout_constraintTop_toBottomOf="@+id/view6" />
+
+    <ImageView
+        android:id="@+id/closeImageView"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/wishlistProductImageView"
+        app:srcCompat="@drawable/cancel" />
+</androidx.constraintlayout.widget.ConstraintLayout>

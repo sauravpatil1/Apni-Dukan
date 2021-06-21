@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Apni Dukan</string>
+
+    <string name="home">Home</string>
+    <string name="category">Category</string>
+    <string name="entrepreneur">Entrepreneur</string>
+    <string name="localStore">LocalStore</string>
+    <string name="profile">Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
