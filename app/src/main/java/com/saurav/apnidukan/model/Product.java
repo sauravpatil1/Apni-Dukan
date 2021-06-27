@@ -2,7 +2,7 @@ package com.saurav.apnidukan.model;
 
 public class Product {
     Integer id, imageURL, price, discount;
-    String brandName, type, weight, description, image, shopName, shopId;
+    String brandName, type, weight, description, image, shopName, shopId, productId;
     Shop shop;
     public Product(){}
 
@@ -106,5 +106,29 @@ public class Product {
 
     public void setShop(Shop shop) {
         this.shop = shop;
+    }
+
+    public String getShopName() {
+        return shopName;
+    }
+
+    public String getShopId() {
+        return shopId;
+    }
+
+    public void setShopName(String shopName) {
+        this.shopName = shopName;
+    }
+
+    public void setShopId(String shopId) {
+        this.shopId = shopId;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 }

@@ -1,7 +1,7 @@
 package com.saurav.apnidukan.model;
 
 public class User {
-    public String id, phone, email, password, name, address, shopID;
+    public String id, phone, email, password, name, address, shopId, shopName;
     public boolean isShopKeeper;
 
     public User(){}
@@ -61,12 +61,12 @@ public class User {
         isShopKeeper = shopKeeper;
     }
 
-    public String getShopID() {
-        return shopID;
+    public String getShopId() {
+        return shopId;
     }
 
-    public void setShopID(String shopID) {
-        this.shopID = shopID;
+    public void setShopId(String shopId) {
+        this.shopId = shopId;
     }
 
     public String getId() {
@@ -75,5 +75,13 @@ public class User {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getShopName() {
+        return shopName;
+    }
+
+    public void setShopName(String shopName) {
+        this.shopName = shopName;
     }
 }

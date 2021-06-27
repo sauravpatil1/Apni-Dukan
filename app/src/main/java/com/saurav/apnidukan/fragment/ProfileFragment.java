@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.saurav.apnidukan.MainActivity;
 import com.saurav.apnidukan.ProductUploadActivity;
 import com.saurav.apnidukan.R;
 import com.saurav.apnidukan.SignInActivity;
@@ -30,6 +32,7 @@ import com.saurav.apnidukan.model.User;
 public class ProfileFragment extends Fragment {
     Button orders, address, upgradeShopkeeper, changePassword, logOut, upload;
     ImageView userImage;
+    TextView userName;
     FirebaseAuth auth;
     DatabaseReference dbRef;
 
@@ -53,6 +56,7 @@ public class ProfileFragment extends Fragment {
         logOut = view.findViewById(R.id.logOutButton);
         upload = view.findViewById(R.id.uploadProductButton);
         upgradeShopkeeper = view.findViewById(R.id.upgradeShopKeeperButton);
+        userName = view.findViewById(R.id.profileFragmentUserName);
         orders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,21 +74,31 @@ public class ProfileFragment extends Fragment {
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ProductUploadActivity.class);
-                startActivity(intent);
+                if(MainActivity.currentUser.isShopKeeper) {
+                    Intent intent = new Intent(getContext(), ProductUploadActivity.class);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(getContext(), "Register shop first!",Toast.LENGTH_LONG).show();
+                }
             }
         });
 
         upgradeShopkeeper.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), UpgradeShopKeeperActivity.class);
-                startActivity(intent);
+                if(!MainActivity.currentUser.isShopKeeper) {
+                    Intent intent = new Intent(getContext(), UpgradeShopKeeperActivity.class);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(getContext(), "You are already a shopKeeper", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
         address = view.findViewById(R.id.addressButton);
         changePassword = view.findViewById(R.id.changePasswordButton);
+
+        userName.setText(MainActivity.currentUser.name);
         return view;
     }
 }

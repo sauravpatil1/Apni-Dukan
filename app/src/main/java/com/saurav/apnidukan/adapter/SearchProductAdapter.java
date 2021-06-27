@@ -1,6 +1,7 @@
 package com.saurav.apnidukan.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.saurav.apnidukan.ProductDetailsActivity;
 import com.saurav.apnidukan.R;
 import com.saurav.apnidukan.model.Product;
 
@@ -39,7 +41,16 @@ public class SearchProductAdapter extends RecyclerView.Adapter<SearchProductAdap
         holder.description.setText(p.getDescription());
         holder.price.setText(Integer.toString(p.getPrice())+"₹");
         holder.discount.setText(Integer.toString(p.getDiscount())+"%off");
+        holder.shopName.setText(p.getShopName());
         Glide.with(context).load(p.getImage()).into(holder.image);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ProductDetailsActivity.class);
+                intent.putExtra("PRODUCT_ID", p.getProductId());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

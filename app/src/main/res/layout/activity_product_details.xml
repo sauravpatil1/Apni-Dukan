@@ -7,7 +7,7 @@
     tools:context=".ProductDetailsActivity">
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/pdAddToCartTextView"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -45,7 +45,7 @@
         app:layout_constraintTop_toTopOf="@+id/backImageView" />
 
     <ImageView
-        android:id="@+id/cart"
+        android:id="@+id/pdGotoCartImageView"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginEnd="16dp"
@@ -55,7 +55,7 @@
         app:srcCompat="@drawable/shoppingcart" />
 
     <ImageView
-        android:id="@+id/productImageView"
+        android:id="@+id/pdImageView"
         android:layout_width="340dp"
         android:layout_height="340dp"
         android:layout_marginTop="64dp"
@@ -66,7 +66,7 @@
         app:srcCompat="@drawable/category5" />
 
     <TextView
-        android:id="@+id/productDetailsNameTextView"
+        android:id="@+id/pdBrandName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -76,41 +76,78 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/pdImageView" />
 
     <TextView
-        android:id="@+id/productPriceTextView"
+        android:id="@+id/pdPriceTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans"
-        android:text="0.000"
+        android:text="0.0"
+        android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productDetailsNameTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/pdBrandName" />
 
     <Button
-        android:id="@+id/buyNowButton"
+        android:id="@+id/pdBuyNowButton"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="35dp"
         android:background="@drawable/buy_now_bg"
         android:text="BUY NOW"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/textView10"
+        app:layout_constraintBottom_toBottomOf="@+id/pdAddToCartTextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView10" />
+        app:layout_constraintTop_toTopOf="@+id/pdAddToCartTextView" />
 
     <TextView
-        android:id="@+id/productDescriptionTextView"
+        android:id="@+id/pdDescriptionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="8dp"
         android:text="Product description"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productPriceTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/pdPriceTextView" />
+
+    <TextView
+        android:id="@+id/pdShopNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/open_sans"
+        android:text="shop name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pdTypeTextView" />
+
+    <TextView
+        android:id="@+id/pdDiscount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/open_sans"
+        android:text="0.0"
+        android:textColor="#42F849"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/pdPriceTextView"
+        app:layout_constraintStart_toEndOf="@+id/pdPriceTextView"
+        app:layout_constraintTop_toTopOf="@+id/pdPriceTextView" />
+
+    <TextView
+        android:id="@+id/pdTypeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/open_sans"
+        android:text="type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pdDescriptionTextView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

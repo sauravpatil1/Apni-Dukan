@@ -15,11 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.saurav.apnidukan.databinding.ActivityProductUploadBinding;
@@ -85,6 +83,9 @@ public class ProductUploadActivity extends AppCompatActivity {
                                             Integer.parseInt(binding.discount.getText().toString()), binding.brandName.getText().toString(), binding.typeSpinner.getSelectedItem().toString(),
                                             binding.weight.getText().toString(), binding.description.getText().toString());
                                     String productId = databaseReference.push().getKey();
+                                    product.setProductId(productId);
+                                    product.setShopId(MainActivity.currentUser.getShopId());
+                                    product.setShopName(MainActivity.currentUser.getShopName());
                                     databaseReference.child(productId).setValue(product);
                                 }
                             });

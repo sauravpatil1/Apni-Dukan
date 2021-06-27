@@ -17,8 +17,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.saurav.apnidukan.MainActivity;
 import com.saurav.apnidukan.R;
 import com.saurav.apnidukan.adapter.LocalShopAdapter;
+import com.saurav.apnidukan.helper.DistanceFinder;
 import com.saurav.apnidukan.model.Shop;
 
 import java.util.ArrayList;
@@ -57,6 +59,7 @@ public class CategoryByLocationFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Shop shop = dataSnapshot.getValue(Shop.class);
+                    if(DistanceFinder.distance(shop.getLatitude(), shop.getLongitude(), MainActivity.userCurrentLocation.getLatitude(), MainActivity.userCurrentLocation.getLongitude()) <= 10)
                     shopList.add(shop);
                 }
                 adapter.notifyDataSetChanged();

@@ -118,8 +118,12 @@ public class UpgradeShopKeeperActivity extends AppCompatActivity {
                             String shopId = databaseReference.push().getKey();
                             shop.setId(shopId);
                             String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
                             shop.setUserID(userId);
-                            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference();
+                            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Users");
+                            userRef.child(userId).child("shopId").setValue(shopId);
+                            userRef.child(userId).child("shopName").setValue(shop.getName());
+                            userRef.child(userId).child("isShopKeeper").setValue(true);
                             databaseReference.child(shopId).setValue(shop);
                         }
                     });
