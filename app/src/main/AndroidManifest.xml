@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ApniDukan">
-        <activity android:name=".MyOrdersActivity"></activity>
+        <activity android:name=".ChangePasswordActivity"></activity>
+        <activity android:name=".SuccessfulActivity" />
+        <activity android:name=".MyOrdersActivity" />
         <activity android:name=".ChangeAddressActivity" />
         <activity android:name=".UpgradeShopKeeperActivity" />
         <activity android:name=".ProductUploadActivity" />

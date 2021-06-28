@@ -1,14 +1,12 @@
 package com.saurav.apnidukan.model;
 
 public class Cart {
-    public String userId, productId;
+    public String id, userId, productId;
 
-    public Cart(){
+    public Cart(){}
 
-
-    }
-
-    public Cart(String userId, String productId) {
+    public Cart(String id, String userId, String productId) {
+        this.id = id;
         this.userId = userId;
         this.productId = productId;
     }
@@ -27,5 +25,13 @@ public class Cart {
 
     public void setProductId(String productId) {
         this.productId = productId;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

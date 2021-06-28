@@ -1,15 +1,14 @@
 package com.saurav.apnidukan;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,7 +30,7 @@ public class SearchActivity extends AppCompatActivity {
     List<Product> productList;
     List<Shop> nearShopList;
 
-    private DatabaseReference dbRef, dbRefShop;
+    private DatabaseReference dbRefShop;
 
 
     @Override
@@ -42,8 +41,10 @@ public class SearchActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.productListRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
+
         productList = new ArrayList<>();
         nearShopList = new ArrayList<>();
+
         adapter = new SearchProductAdapter(SearchActivity.this, productList);
         recyclerView.setAdapter(adapter);
     }
@@ -58,22 +59,25 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 List<Shop> shopList = new ArrayList<>();
+
                 for (DataSnapshot postSnapShot : snapshot.getChildren()){
                     Shop shop = postSnapShot.getValue(Shop.class);
                     shopList.add(shop);
                 }
+
                 for (int i=0;i<shopList.size();i++){
                     Shop shop = shopList.get(i);
                     if(DistanceFinder.distance(shop.getLatitude(), shop.getLongitude(), MainActivity.userCurrentLocation.getLatitude(), MainActivity.userCurrentLocation.getLongitude()) <= 10){
                         nearShopList.add(shop);
                     }
                 }
-                Toast.makeText(SearchActivity.this, Integer.toString(nearShopList.size()), Toast.LENGTH_LONG).show();
+
                 for(int i=0;i<nearShopList.size();i++) {
                     Query query = FirebaseDatabase.getInstance().getReference("product").orderByChild("shopId").equalTo(nearShopList.get(i).id);
                     query.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            productList.removeAll(productList);
                             for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                                 Product product = dataSnapshot.getValue(Product.class);
                                 if(product.getBrandName().equalsIgnoreCase(searchTerm) || product.getType().equalsIgnoreCase(searchTerm)) {

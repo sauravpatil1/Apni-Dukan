@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +31,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
     RecyclerView cartProductRecyclerView;
     TextView addressTextView, totalMRP, discounted, totalAmount;
     List<Product> productList;
+    List<Cart> cartList;
     DatabaseReference dbRef;
     ShoppingCartProductAdapter adapter;
     @Override
@@ -45,8 +47,9 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
         addressTextView.setText("Deliver to : "+MainActivity.currentUser.getAddress());
         productList = new ArrayList<>();
+        cartList = new ArrayList<>();
         cartProductRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new ShoppingCartProductAdapter(this, productList);
+        adapter = new ShoppingCartProductAdapter(this, productList, cartList);
         cartProductRecyclerView.setAdapter(adapter);
 
         dbRef = FirebaseDatabase.getInstance().getReference("cart");
@@ -56,6 +59,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
                 List<String> productIdList = new ArrayList<>();
                 for(DataSnapshot ds : snapshot.getChildren()){
                     Cart cart = ds.getValue(Cart.class);
+                    cartList.add(cart);
                     productIdList.add(cart.getProductId());
                 }
                 for(int i=0;i<productIdList.size();i++){
@@ -63,6 +67,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
                     productRef.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            productIdList.removeAll(productIdList);
                             int calTotalAmount = 0, calDiscount = 0, calTotalMRP = 0;
                             for(DataSnapshot ds : snapshot.getChildren()){
                                 Product product = ds.getValue(Product.class);
@@ -97,8 +102,6 @@ public class ShoppingCartActivity extends AppCompatActivity {
                 Toast.makeText(ShoppingCartActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
-
-
     }
 
     public void onClickCallChangeAddress(View view){
@@ -113,7 +116,12 @@ public class ShoppingCartActivity extends AppCompatActivity {
             Order order = new Order(id, MainActivity.currentUser.id, productList.get(i).getProductId(), productList.get(i).getShopId(), "placed", MainActivity.currentUser.getName(), MainActivity.currentUser.getAddress());
             orderRef.child(id).setValue(order);
         }
-        //todo
+        for(int i=0;i<cartList.size();i++){
+            DatabaseReference removeCart = FirebaseDatabase.getInstance().getReference("cart").child(cartList.get(i).getId());
+            removeCart.removeValue();
+        }
+        Intent intent = new Intent(ShoppingCartActivity.this, SuccessfulActivity.class);
+        startActivity(intent);
     }
 
 }

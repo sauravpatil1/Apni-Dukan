@@ -21,6 +21,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.saurav.apnidukan.ChangeAddressActivity;
+import com.saurav.apnidukan.ChangePasswordActivity;
 import com.saurav.apnidukan.MainActivity;
 import com.saurav.apnidukan.MyOrdersActivity;
 import com.saurav.apnidukan.ProductUploadActivity;
@@ -100,6 +102,21 @@ public class ProfileFragment extends Fragment {
 
         address = view.findViewById(R.id.addressButton);
         changePassword = view.findViewById(R.id.changePasswordButton);
+        address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ChangeAddressActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        changePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ChangePasswordActivity.class);
+                startActivity(intent);
+            }
+        });
 
         userName.setText(MainActivity.currentUser.name);
         return view;
