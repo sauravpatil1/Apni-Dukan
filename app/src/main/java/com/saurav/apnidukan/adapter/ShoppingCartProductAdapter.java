@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.saurav.apnidukan.R;
 import com.saurav.apnidukan.model.Product;
 
@@ -33,11 +34,13 @@ public class ShoppingCartProductAdapter extends RecyclerView.Adapter<ShoppingCar
 
     @Override
     public void onBindViewHolder(@NonNull ShoppingCartProductViewHolder holder, int position) {
-        holder.productImage.setImageResource(productList.get(position).getImageURL());
         holder.name.setText(productList.get(position).getBrandName());
         holder.price.setText(Integer.toString(productList.get(position).getPrice()));
         holder.description.setText(productList.get(position).getDescription());
-        holder.shop.setText(productList.get(position).getShop().getName());
+        holder.shop.setText(productList.get(position).getShopName());
+        holder.weight.setText(productList.get(position).getWeight());
+        Glide.with(context).load(productList.get(position).getImage()).into(holder.productImage);
+        //todo remove
     }
 
     @Override
@@ -47,16 +50,17 @@ public class ShoppingCartProductAdapter extends RecyclerView.Adapter<ShoppingCar
 
     public static class ShoppingCartProductViewHolder extends RecyclerView.ViewHolder {
         ImageView productImage;
-        TextView name, description, price, shop, remove, moveWishList;
+        TextView name, description, price, shop, remove, moveWishList, weight;
         public ShoppingCartProductViewHolder(@NonNull View itemView) {
             super(itemView);
-            productImage = itemView.findViewById(R.id.orderedProductImageView);
-            name = itemView.findViewById(R.id.orderBrandName);
-            price = itemView.findViewById(R.id.orderPrice);
-            shop = itemView.findViewById(R.id.orderedShop);
-            description = itemView.findViewById(R.id.orderDescriptionTextView);
-            remove = itemView.findViewById(R.id.cancelTextView);
+            productImage = itemView.findViewById(R.id.scProductImageView);
+            name = itemView.findViewById(R.id.scBrandName);
+            price = itemView.findViewById(R.id.scProductPrice);
+            shop = itemView.findViewById(R.id.scShopName);
+            description = itemView.findViewById(R.id.scDescription);
+            remove = itemView.findViewById(R.id.scRemoveTextView);
             moveWishList = itemView.findViewById(R.id.orderedStatus);
+            weight = itemView.findViewById(R.id.scWeightTextView);
         }
     }
 }

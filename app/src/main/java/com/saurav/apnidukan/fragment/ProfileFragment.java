@@ -22,10 +22,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.saurav.apnidukan.MainActivity;
+import com.saurav.apnidukan.MyOrdersActivity;
 import com.saurav.apnidukan.ProductUploadActivity;
 import com.saurav.apnidukan.R;
 import com.saurav.apnidukan.SignInActivity;
 import com.saurav.apnidukan.UpgradeShopKeeperActivity;
+import com.saurav.apnidukan.adapter.OrderedProductStatusAdapter;
 import com.saurav.apnidukan.model.User;
 
 
@@ -60,7 +62,8 @@ public class ProfileFragment extends Fragment {
         orders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getContext(), MyOrdersActivity.class);
+                startActivity(intent);
             }
         });
         logOut.setOnClickListener(new View.OnClickListener() {

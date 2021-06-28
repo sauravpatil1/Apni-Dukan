@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.saurav.apnidukan.R;
 import com.saurav.apnidukan.model.Product;
 
@@ -34,9 +35,9 @@ public class OrderedProductAdapter extends RecyclerView.Adapter<OrderedProductAd
 
     @Override
     public void onBindViewHolder(@NonNull OrderedProductAdapter.OrderedProductViewHolder holder, int position) {
-        holder.productImage.setImageResource(productList.get(position).getImageURL());
         holder.description.setText(productList.get(position).getDescription());
         holder.brandName.setText(productList.get(position).getBrandName());
+        holder.price.setText(Integer.toString(productList.get(position).getPrice()));
         holder.packedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,6 +45,7 @@ public class OrderedProductAdapter extends RecyclerView.Adapter<OrderedProductAd
                 //todo set color
             }
         });
+        Glide.with(context).load(productList.get(position).getImage()).into(holder.productImage);
     }
 
     @Override
@@ -54,14 +56,14 @@ public class OrderedProductAdapter extends RecyclerView.Adapter<OrderedProductAd
     public static class OrderedProductViewHolder extends RecyclerView.ViewHolder{
         ImageView productImage;
         Button packedButton;
-        TextView brandName,description, quantity;
+        TextView brandName,description, price;
         public OrderedProductViewHolder(@NonNull View itemView) {
             super(itemView);
             productImage = itemView.findViewById(R.id.orderedProductAdapterImageView);
             brandName = itemView.findViewById(R.id.orderedProductBrandName);
             description = itemView.findViewById(R.id.ordered_prodcut_description);
-            quantity = itemView.findViewById(R.id.quantity);
             packedButton = itemView.findViewById(R.id.packedButton);
+            price = itemView.findViewById(R.id.orderedProductPriceTextView);
         }
     }
 }

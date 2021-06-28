@@ -1,51 +1,75 @@
 package com.saurav.apnidukan.model;
 
-import java.util.List;
 
 public class Order {
-    Integer id, price;
-    List<Product> productList;
-    Customer customer;
-    public Order(Customer customer){
-        this.customer = customer;
-    }
+    String id, userId, productId, shopId, status, userName, userAddress;
 
-    public Order(Integer id, Integer price, List<Product> productList, Customer customer) {
+    public Order(String id, String userId, String productId, String shopId, String status, String userName, String userAddress) {
         this.id = id;
-        this.price = price;
-        this.productList = productList;
-        this.customer = customer;
+        this.userId = userId;
+        this.productId = productId;
+        this.shopId = shopId;
+        this.status = status;
+        this.userName = userName;
+        this.userAddress = userAddress;
     }
 
-    public Integer getId() {
+    public Order() {
+    }
+
+    public String getId() {
         return id;
     }
 
-    public Integer getPrice() {
-        return price;
+    public String getUserId() {
+        return userId;
     }
 
-    public List<Product> getProductList() {
-        return productList;
+    public String getProductId() {
+        return productId;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public String getShopId() {
+        return shopId;
     }
 
-    public void setId(Integer id) {
+    public String getStatus() {
+        return status;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setId(String id) {
         this.id = id;
     }
 
-    public void setPrice(Integer price) {
-        this.price = price;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setShopId(String shopId) {
+        this.shopId = shopId;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserAddress() {
+        return userAddress;
+    }
+
+    public void setUserAddress(String userAddress) {
+        this.userAddress = userAddress;
     }
 }

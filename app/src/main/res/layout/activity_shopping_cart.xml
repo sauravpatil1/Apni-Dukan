@@ -47,6 +47,7 @@
         android:layout_height="65dp"
         android:background="@drawable/place_order_button_bg"
         android:elevation="2dp"
+        android:onClick="onClickPlaceOrder"
         android:text="PLACE ORDER"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -68,7 +69,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/shoppingCartAddressTextView"
+                android:id="@+id/shoppingCartUserAddressTextView"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -85,13 +86,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/open_sans"
+                android:onClick="onClickCallChangeAddress"
                 android:text="CHANGE"
                 android:textColor="#C31B34"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/shoppingCartAddressTextView"
-                app:layout_constraintStart_toEndOf="@+id/shoppingCartAddressTextView"
-                app:layout_constraintTop_toTopOf="@+id/shoppingCartAddressTextView" />
+                app:layout_constraintBottom_toBottomOf="@+id/shoppingCartUserAddressTextView"
+                app:layout_constraintStart_toEndOf="@+id/shoppingCartUserAddressTextView"
+                app:layout_constraintTop_toTopOf="@+id/shoppingCartUserAddressTextView" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/cartProductRecyclerView"
@@ -102,7 +104,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/shoppingCartAddressTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/shoppingCartUserAddressTextView" />
 
             <TextView
                 android:id="@+id/textView11"

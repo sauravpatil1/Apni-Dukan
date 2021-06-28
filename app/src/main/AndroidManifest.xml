@@ -3,7 +3,7 @@
     package="com.saurav.apnidukan">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ApniDukan">
-        <activity android:name=".UpgradeShopKeeperActivity"></activity>
+        <activity android:name=".MyOrdersActivity"></activity>
+        <activity android:name=".ChangeAddressActivity" />
+        <activity android:name=".UpgradeShopKeeperActivity" />
         <activity android:name=".ProductUploadActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".SignInActivity">
@@ -22,7 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OrderDetailsActivity" />
         <activity android:name=".ShoppingCartActivity" />
         <activity android:name=".ProductDetailsActivity" />
         <activity android:name=".WishlistActivity" />

@@ -7,57 +7,48 @@
     android:background="@drawable/ordered_product_rt_bg">
 
     <ImageView
-        android:id="@+id/orderedProductAdapterImageView"
+        android:id="@+id/opImageView"
         android:layout_width="130dp"
-        android:layout_height="150dp"
+        android:layout_height="130dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/category5" />
+        app:srcCompat="@drawable/category6" />
 
     <TextView
-        android:id="@+id/orderedProductBrandName"
+        android:id="@+id/opBrandName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/open_sans"
-        android:text="Brand Name"
+        android:layout_marginTop="8dp"
+        android:text="brandName"
         android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@+id/orderedProductAdapterImageView"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/opImageView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/ordered_prodcut_description"
+        android:id="@+id/opDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/open_sans"
-        android:text="Description"
-        app:layout_constraintStart_toEndOf="@+id/orderedProductAdapterImageView"
-        app:layout_constraintTop_toBottomOf="@+id/orderedProductBrandName" />
-
-    <Button
-        android:id="@+id/packedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Pack"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/orderedProductAdapterImageView" />
+        android:text="description"
+        app:layout_constraintStart_toEndOf="@+id/opImageView"
+        app:layout_constraintTop_toBottomOf="@+id/opBrandName" />
 
     <TextView
-        android:id="@+id/orderedProductPriceTextView"
+        android:id="@+id/opPriceTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="price"
-        app:layout_constraintStart_toEndOf="@+id/orderedProductAdapterImageView"
-        app:layout_constraintTop_toBottomOf="@+id/ordered_prodcut_description" />
+        android:text="Price"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/opImageView"
+        app:layout_constraintTop_toBottomOf="@+id/opDescription" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
