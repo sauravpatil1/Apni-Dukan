@@ -4,7 +4,6 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.ArrayAdapter;
@@ -25,7 +24,7 @@ import com.saurav.apnidukan.model.Product;
 
 public class ProductUploadActivity extends AppCompatActivity {
     ActivityProductUploadBinding binding;
-    String [] categoryArray, typeArray;
+    String [] typeArray;
     private static final int PICK_IMAGE_REQUEST = 1;
     private Uri imageUri;
 
@@ -40,12 +39,9 @@ public class ProductUploadActivity extends AppCompatActivity {
         storageReference = FirebaseStorage.getInstance().getReference("productImage");
         databaseReference = FirebaseDatabase.getInstance().getReference("product");
 
-        categoryArray = new String[]{"Food", "Drink", "Oil", "Dal", "Crockery"};
-        typeArray = new String[]{"Food", "Oil", "Toor", "Chaval"};
+        typeArray = new String[]{"Can Food", "Milk", "Fruits", "Vegetables", "Alcohol", "Meat", "Packed food", "Toiletries"};
 
-        ArrayAdapter<String> categorySpinnerAdapter= new ArrayAdapter<String>(this, R.layout.custom_spinner_layout, categoryArray);
         ArrayAdapter<String> typeSpinnerAdapter = new ArrayAdapter<String>(this, R.layout.custom_spinner_layout, typeArray);
-        binding.categorySpinner.setAdapter(categorySpinnerAdapter);
         binding.typeSpinner.setAdapter(typeSpinnerAdapter);
 
         binding.chooseImageButton.setOnClickListener(new View.OnClickListener() {

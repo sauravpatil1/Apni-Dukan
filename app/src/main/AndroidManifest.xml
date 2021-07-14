@@ -3,6 +3,8 @@
     package="com.saurav.apnidukan">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION>" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
@@ -12,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ApniDukan">
-        <activity android:name=".ChangePasswordActivity"></activity>
+        <activity android:name=".CategoryWiseProductActivity"></activity>
+        <activity android:name=".ChangePasswordActivity" />
         <activity android:name=".SuccessfulActivity" />
         <activity android:name=".MyOrdersActivity" />
         <activity android:name=".ChangeAddressActivity" />

@@ -31,7 +31,7 @@ public class SearchActivity extends AppCompatActivity {
     List<Shop> nearShopList;
 
     private DatabaseReference dbRefShop;
-
+    String lastSearch = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,8 @@ public class SearchActivity extends AppCompatActivity {
     public void onClickSearch(View view){
         EditText editText = findViewById(R.id.sSearchEditText);
         String searchTerm = editText.getText().toString();
-        if(searchTerm.trim() == null)return;
+        if(searchTerm.trim().equals(lastSearch))return;
+        lastSearch = searchTerm;
 
         dbRefShop = FirebaseDatabase.getInstance().getReference("shop");
         dbRefShop.addValueEventListener(new ValueEventListener() {
@@ -67,8 +68,12 @@ public class SearchActivity extends AppCompatActivity {
 
                 for (int i=0;i<shopList.size();i++){
                     Shop shop = shopList.get(i);
-                    if(DistanceFinder.distance(shop.getLatitude(), shop.getLongitude(), MainActivity.userCurrentLocation.getLatitude(), MainActivity.userCurrentLocation.getLongitude()) <= 10){
-                        nearShopList.add(shop);
+                    try {
+                        if (DistanceFinder.distance(shop.getLatitude(), shop.getLongitude(), MainActivity.userCurrentLocation.getLatitude(), MainActivity.userCurrentLocation.getLongitude()) <= 10) {
+                            nearShopList.add(shop);
+                        }
+                    }catch (Exception e){
+                        Toast.makeText(SearchActivity.this, "Enable location", Toast.LENGTH_LONG).show();
                     }
                 }
 
@@ -77,7 +82,7 @@ public class SearchActivity extends AppCompatActivity {
                     query.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            productList.removeAll(productList);
+                            //productList.removeAll(productList);
                             for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                                 Product product = dataSnapshot.getValue(Product.class);
                                 if(product.getBrandName().equalsIgnoreCase(searchTerm) || product.getType().equalsIgnoreCase(searchTerm)) {

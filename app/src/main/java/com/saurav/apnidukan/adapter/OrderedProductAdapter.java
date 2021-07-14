@@ -1,6 +1,7 @@
 package com.saurav.apnidukan.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,7 @@ public class OrderedProductAdapter extends RecyclerView.Adapter<OrderedProductAd
             @Override
             public void onClick(View v) {
                 holder.packedButton.setText("PACKED");
-                //todo set color
+                holder.packedButton.setTextColor(Color.parseColor("#C31B34"));
             }
         });
         Glide.with(context).load(productList.get(position).getImage()).into(holder.productImage);

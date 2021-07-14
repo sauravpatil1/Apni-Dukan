@@ -92,24 +92,25 @@
     <Button
         android:id="@+id/upgradeShopKeeperButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/purple_200"
+        android:drawableEnd="@drawable/greaterthansymbol"
         android:fontFamily="@font/open_sans"
-        android:gravity="center"
-        android:text="Upgrade to shopKeeper"
-        android:textStyle="bold" />
+        android:gravity="start"
+        android:text="Upgrade to shopKeeper" />
 
     <Button
         android:id="@+id/uploadProductButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/purple_200"
+        android:drawableEnd="@drawable/greaterthansymbol"
+        android:fontFamily="@font/open_sans"
+        android:gravity="start"
         android:text="Upload Product" />
 
     <Button

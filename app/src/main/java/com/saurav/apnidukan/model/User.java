@@ -3,6 +3,7 @@ package com.saurav.apnidukan.model;
 public class User {
     public String id, phone, email, password, name, address, shopId, shopName;
     public boolean isShopKeeper;
+    double latitude, longitude;
 
     public User(){}
 
@@ -83,5 +84,21 @@ public class User {
 
     public void setShopName(String shopName) {
         this.shopName = shopName;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 }

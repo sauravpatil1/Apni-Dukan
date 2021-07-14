@@ -1,6 +1,7 @@
 package com.saurav.apnidukan.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.saurav.apnidukan.CategoryWiseProductActivity;
 import com.saurav.apnidukan.R;
 import com.saurav.apnidukan.model.Category;
 
@@ -35,6 +37,14 @@ public class AllCategoryAdapter extends RecyclerView.Adapter<AllCategoryAdapter.
     public void onBindViewHolder(@NonNull AllCategoryAdapter.AllCategoryViewHolder holder, int position) {
         holder.allCategoryImageView.setImageResource(categoryList.get(position).getImageURL());
         holder.name.setText(categoryList.get(position).getType());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CategoryWiseProductActivity.class);
+                intent.putExtra("TYPE", categoryList.get(position).getType());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

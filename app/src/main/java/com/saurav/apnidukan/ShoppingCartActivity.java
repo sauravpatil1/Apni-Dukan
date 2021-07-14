@@ -62,25 +62,22 @@ public class ShoppingCartActivity extends AppCompatActivity {
                     cartList.add(cart);
                     productIdList.add(cart.getProductId());
                 }
+                productList.clear();
                 for(int i=0;i<productIdList.size();i++){
                     Query productRef = FirebaseDatabase.getInstance().getReference("product").orderByChild("productId").equalTo(productIdList.get(i));
                     productRef.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            productIdList.removeAll(productIdList);
-                            int calTotalAmount = 0, calDiscount = 0, calTotalMRP = 0;
+                            int calTotalAmount = 0,calTotalMRP = 0;
                             for(DataSnapshot ds : snapshot.getChildren()){
                                 Product product = ds.getValue(Product.class);
                                 productList.add(product);
                                 calTotalAmount += product.getPrice();
-                                calDiscount += product.getDiscount();
+                                try {
+                                    calTotalMRP += (product.getPrice() * 100) / product.getDiscount();
+                                }catch (Exception e){}
                             }
-                            try {
-                                calTotalMRP = (calTotalAmount * 100) / calDiscount;
-                                calDiscount = calTotalMRP - calTotalAmount;
-                            }catch (ArithmeticException e){
-                                //todo write logic
-                            }
+                            int calDiscount = calTotalMRP - calTotalAmount;
                             totalMRP.setText(Integer.toString(calTotalMRP));
                             discounted.setText("-" + Integer.toString(calDiscount));
                             totalAmount.setText(Integer.toString(calTotalAmount));

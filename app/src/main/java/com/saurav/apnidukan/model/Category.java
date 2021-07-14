@@ -10,9 +10,10 @@ public class Category {
         this.type = type;
     }
 
-    public Category(Integer id, Integer imageURL) {
+    public Category(Integer id, Integer imageURL, String type) {
         this.id = id;
         this.imageURL = imageURL;
+        this.type = type;
     }
 
     public String getType() {

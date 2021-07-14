@@ -40,15 +40,14 @@ public class CategoryFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_category, container, false);
         allCategoryRecyclerView = view.findViewById(R.id.allCategoryRecyclerView);
         List<Category> categoryList = new ArrayList<>();
-        categoryList.add(new Category(R.drawable.category1, "can food"));
+        categoryList.add(new Category(R.drawable.category1, "Can food"));
         categoryList.add(new Category(R.drawable.category2, "Milk"));
         categoryList.add(new Category(R.drawable.category3, "Fruits"));
         categoryList.add(new Category(R.drawable.category4, "Vegetables"));
         categoryList.add(new Category(R.drawable.category5, "Alcohol"));
-        categoryList.add(new Category(R.drawable.category6, "meat"));
+        categoryList.add(new Category(R.drawable.category6, "Meat"));
         categoryList.add(new Category(R.drawable.category7, "Packed food"));
         categoryList.add(new Category(R.drawable.category8, "Toiletries"));
-        categoryList.add(new Category(R.drawable.category1, "can food"));
 
         setAllCategoryRecyclerView(categoryList);
         return view;

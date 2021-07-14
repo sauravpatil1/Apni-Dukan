@@ -59,8 +59,17 @@ public class CategoryByLocationFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Shop shop = dataSnapshot.getValue(Shop.class);
-                    if(DistanceFinder.distance(shop.getLatitude(), shop.getLongitude(), MainActivity.userCurrentLocation.getLatitude(), MainActivity.userCurrentLocation.getLongitude()) <= 10)
-                    shopList.add(shop);
+                    try {
+                        if (DistanceFinder.distance(shop.getLatitude(), shop.getLongitude(), MainActivity.userCurrentLocation.getLatitude(), MainActivity.userCurrentLocation.getLongitude()) <= 10)
+                            shopList.add(shop);
+                    }catch (Exception e){
+                        try{
+                            if(DistanceFinder.distance(shop.getLatitude(), shop.getLongitude(), MainActivity.currentUser.getLatitude(), MainActivity.currentUser.getLatitude())<=10)
+                                shopList.add(shop);
+                        }catch (Exception e1){
+                            Toast.makeText(getContext(), "Enable location", Toast.LENGTH_LONG).show();
+                        }
+                    }
                 }
                 adapter.notifyDataSetChanged();
             }
