@@ -1,17 +1,16 @@
 package com.saurav.apnidukan;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnSuccessListener;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,14 +21,13 @@ import com.saurav.apnidukan.adapter.ShoppingCartProductAdapter;
 import com.saurav.apnidukan.model.Cart;
 import com.saurav.apnidukan.model.Order;
 import com.saurav.apnidukan.model.Product;
-import com.saurav.apnidukan.model.Shop;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingCartActivity extends AppCompatActivity {
     RecyclerView cartProductRecyclerView;
-    TextView addressTextView, totalMRP, discounted, totalAmount;
+    TextView addressTextView, totalAmount;
     List<Product> productList;
     List<Cart> cartList;
     DatabaseReference dbRef;
@@ -41,8 +39,6 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
         cartProductRecyclerView = findViewById(R.id.cartProductRecyclerView);
         addressTextView = findViewById(R.id.shoppingCartUserAddressTextView);
-        totalMRP = findViewById(R.id.totalPriceTextView);
-        discounted = findViewById(R.id.discountOnMRPTextView);
         totalAmount = findViewById(R.id.totalAmountTextView);
 
         addressTextView.setText("Deliver to : "+MainActivity.currentUser.getAddress());
@@ -68,20 +64,13 @@ public class ShoppingCartActivity extends AppCompatActivity {
                     productRef.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            int calTotalAmount = 0,calTotalMRP = 0;
+                            int calTotalAmount = 0;
                             for(DataSnapshot ds : snapshot.getChildren()){
                                 Product product = ds.getValue(Product.class);
                                 productList.add(product);
-                                calTotalAmount += product.getPrice();
-                                try {
-                                    calTotalMRP += (product.getPrice() * 100) / product.getDiscount();
-                                }catch (Exception e){}
+                                calTotalAmount = calTotalAmount + product.getPrice();
                             }
-                            int calDiscount = calTotalMRP - calTotalAmount;
-                            totalMRP.setText(Integer.toString(calTotalMRP));
-                            discounted.setText("-" + Integer.toString(calDiscount));
                             totalAmount.setText(Integer.toString(calTotalAmount));
-
                             adapter.notifyDataSetChanged();
 
                         }
