@@ -7,6 +7,11 @@ A full-stack hyperlocal e-commerce platform which focuses on providing all the p
 <br/>
 2.Download and intall java sdk.
 <br/>
+3.Clone repository
+<br/>
+4.Extract zip file
+<br/>
+5.Open in android studio.
 **Some ScreenShots**
 
 ![github-small](https://raw.githubusercontent.com/sauravpatil1/Apni-Dukan-sr/main/Screenshot_20210801_083517.jpg)
