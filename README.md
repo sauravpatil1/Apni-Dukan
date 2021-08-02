@@ -12,6 +12,7 @@ A full-stack hyperlocal e-commerce platform which focuses on providing all the p
 4.Extract zip file
 <br/>
 5.Open in android studio.
+<br/>
 **Some ScreenShots**
 
 ![github-small](https://raw.githubusercontent.com/sauravpatil1/Apni-Dukan-sr/main/Screenshot_20210801_083517.jpg)
